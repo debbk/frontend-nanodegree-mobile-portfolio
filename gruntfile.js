@@ -11,15 +11,15 @@ module.exports = function(grunt) {
 			 		engine: 'im',
 			 		sizes: [{
 						name: "small",
-				 		width: 150,
+				 		width: 200,
 				 		quality:75
 				 	}]
 				},
 				files: [{
 			 		expand: true,
 			 		src: ['**.*'],
-			 		cwd: 'img',
-			 		dest: 'imagesmall/'
+			 		cwd: 'views/images',
+			 		dest: 'views/imagesmall2/'
 				}]
 			}
 		},
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 		//Clear out the images directory if it exists
 		clean: {
 			dev: {
-				src: ['imagesmall'],
+				src: ['views/imagesmall2'],
 			},
 		},
 
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 		mkdir: {
 			dev: {
 				options: {
-					create: ['imagesmall']
+					create: ['views/imagesmall2']
 				},
 			},
 		},
@@ -45,8 +45,8 @@ module.exports = function(grunt) {
 			dev: {
 				files: [{
 				expand: true,
-				src: 'img/fixed/*.{gif,jpg,png}',
-				dest: 'imagesmall/'
+				src: 'views/images/fixed/*.{gif,jpg,png}',
+				dest: 'views/imagesmall2/'
 				}]
 			},
 		},
