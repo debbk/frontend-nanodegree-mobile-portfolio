@@ -1,4 +1,14 @@
 ## Website Performance Optimization portfolio project
+[View Project](http://debbk.github.io/frontend-nanodegree-mobile-portfolio)
+
+###Setup and Testing the Page Speed
+1. Clone the repository to local machine
+2. Start XAMPP server ([instructions on XAMPP installation](https://www.apachefriends.org/index.html))
+3. Open a browser and visit the local host (ex. http://localhost:8080/udacity/p4)
+4. Download [ngrok](https://ngrok.com/) and run it from the command line to make the local server accessible remotely
+5. Copy the URL output via ngrok and run it through [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
+
+
 
 ####Part 1: Optimize PageSpeed Insights score for index.html
 

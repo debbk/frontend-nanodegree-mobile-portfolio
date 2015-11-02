@@ -399,6 +399,8 @@ var pizzaElementGenerator = function(i) {
 };
 
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
+var pizzaCall = document.getElementById("#pizzaSize").innerHTML;
+var randomPizzas = document.getElementByClassName(".randomPizzaContainer");
 var resizePizzas = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
 
@@ -406,13 +408,13 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        pizzaCall = "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        pizzaCall = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        pizzaCall = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -438,8 +440,8 @@ var resizePizzas = function(size) {
     }
 
   // Iterates through pizza elements on the page and changes their widths
-    var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
-    for (var i = 0; i < randomPizzas.length; i++) {
+    var len = randomPizzas.length;
+    for (var i = 0; i < len; i++) {
       randomPizzas[i].style.width = newWidth + "%";
     }
   }
@@ -485,13 +487,12 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
+var items = document.getElementByClassName('.mover');  //Cache items
+var calc = document.body.scrollTop / 1250; //Cache the scolling offset
+var l = items.length //Cache length
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-
-  var items = document.querySelectorAll('.mover');  //Cache items
-  var calc = document.body.scrollTop / 1250; //Cache the scolling offset
-  var l = items.length //Cache length
 
   for (var i = 0; i < l; i++) {
     var phase = Math.sin(calc + (i % 5));
@@ -512,10 +513,12 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
+var initFrameHeight = window.innerHeight;
+var movingPizzas = document.getElementById('movingPizzas1');
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 25; i++) {
+  for (var i = 0; i < initFrameHeight; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
@@ -523,7 +526,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    movingPizzas.appendChild(elem);
   }
   updatePositions();
 });
