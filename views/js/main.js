@@ -495,9 +495,13 @@ function updatePositions() {
   var calc = document.body.scrollTop / 1250; //Cache the scolling offset
   var l = items.length //Cache length
 
+  var phase = [];
+  for (var i = 0; i < 5; i++) {
+      phase.push(Math.sin(calc + i) * 100);
+  }
+
   for (var i = 0; i < l; i++) {
-    var phase = Math.sin(calc + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+      items[i].style.left = items[i].basicLeft + phase[i % 5] + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -514,10 +518,11 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
-var intFrameHeight = window.innerHeight;
+
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
+  var cols = 5;
   var s = 256;
+  var intFrameHeight = window.innerHeight/s*cols;
   for (var i = 0; i < intFrameHeight; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
