@@ -25,7 +25,7 @@ Index.hmtl was optimized with the following:
 
 Views/pizza.html was optimized with the following:
 1. Put class 'mover' on a separate layer
-2. Reduced the number of pizzas generated from 200 to 25
+2. Number of pizzas being generated is done dynamically depending on the window height
 3. Moved the calculation of 'document.body.scrollTop / 1250' outside of the loop on line 493
 4. Changed the 'changePizzaSizes' function so the size of the pizza is calculated immediately (without the need of the dx function)
 5. Utilized grunt to minimize images
